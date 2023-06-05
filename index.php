@@ -8,6 +8,14 @@ if($_POST){
 }
 ?>
 
+<?php
+if ($_GET["ad"] && $_GET["telefon"]){
+    // print_r($_GET["ad"].$_GET["telefon"]);
+    Sil($_GET["ad"], $_GET["telefon"]);
+    echo "<div>Kayıt silindi!</div>";
+}
+?>
+
 <form action="." method="post">
     <input type="text" name="ad" placeholder="Ad">
     <input type="text" name="telefon" placeholder="Telefon">
@@ -22,8 +30,8 @@ foreach($satirlar as $satir){
     $parcala = explode("|", $satir);
     $ad = $parcala[0];
     $telefon = $parcala[1];
-    if($telefon){ // if(1 && true && "1",,,,, 0 false "")
-        echo "<div>$ad: $telefon <button>Sil</button></div>";
+    if($telefon){
+        echo "<div>$ad: $telefon <a onclick='return confirm(`Emin misiniz?`)' href='./?ad=$ad&telefon=$telefon'>Sil</a></div>";
     }
 }
 ?>
